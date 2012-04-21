@@ -96,6 +96,21 @@ static void TestRequestValidRequest(void)
     while (!done){}
 }
 
+// Testing valid user login
+static void TestUserLoginValid(void)
+{
+    __block BOOL done = NO;
+    [PFMUser logInWithUsernameInBackground:@"testuser" 
+                                  password:@"testuser" 
+                                     block:^(PFMUser *user, NSError *error) {
+                                         TEST_ASSERT(user != nil, @"User should not be nil");
+                                         TEST_ASSERT(error == nil, @"There should be no error");
+                                         TEST_ASSERT([[user objectId] length] > 0, @"User should have an id");
+                                         done = YES;
+                                     }];
+    while (!done){}
+}
+
 
 int main (int argc, const char * argv[])
 {
@@ -106,6 +121,7 @@ int main (int argc, const char * argv[])
         //TEST(TestRequestBadURL);
         //TEST(TestRequestNonJSON);
         //TEST(TestRequestValidRequest);
+        TEST(TestUserLoginValid);
         
         NSString *message;
         if(gFailureCount)
@@ -113,7 +129,7 @@ int main (int argc, const char * argv[])
         else
             message = @"SUCCESS";
         NSLog(@"Tests complete: %@", message);
-
+        
         
 
     }

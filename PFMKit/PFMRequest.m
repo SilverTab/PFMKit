@@ -72,7 +72,7 @@ NSString * PFMRequestErrorDomain = @"com.silvercocoa.PFMRequest.ErrorDomain";
         request.HTTPBody = [[self urlEncodedStringForDictionary:self.body] dataUsingEncoding:NSUTF8StringEncoding];
     }
     
-    NSLog(@"Performing request on URL: %@", self.url);
+    DLOG(@"Performing request on URL: %@", self.url);
     [NSURLConnection sendAsynchronousRequest:request 
                                        queue:queue 
                            completionHandler:^(NSURLResponse *response, NSData *respData, NSError *error) {

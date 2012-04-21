@@ -10,6 +10,9 @@
 
 @interface PFMUser : PFMObject
 
+@property (nonatomic, strong) NSString *username;
+@property (nonatomic, strong) NSString *password;
+
 @property (nonatomic, strong) NSString *sessionToken;
 
 + (void)logInWithUsernameInBackground:(NSString *)username password:(NSString *)password block:(PFMUserResultBlock)block;

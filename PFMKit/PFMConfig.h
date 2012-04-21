@@ -9,5 +9,5 @@
 #import <Foundation/Foundation.h>
 
 // USER DEFINED!
-#define PARSE_APPLICATION_ID @"YOUR_APP_ID"
-#define PARSE_REST_API_KEY @"YOUR_API_KEY"
+#define PARSE_APPLICATION_ID @"Z0u8MuhkHOei1gwrx6NgxB0HZhODLJIgKZMBVu3p"
+#define PARSE_REST_API_KEY @"Dm1jLvWCaN41ePbALpYHDCe3izRtg5krQ7ZrH81J"
