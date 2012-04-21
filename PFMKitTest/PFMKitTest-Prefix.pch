@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'PFMKitTest' target in the 'PFMKitTest' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+#endif
