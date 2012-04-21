@@ -26,6 +26,8 @@
 		7C2E10CA1542073200A6866C /* PFMAPIRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2E10C81542073200A6866C /* PFMAPIRequest.m */; };
 		7C2E10CC154315DE00A6866C /* PFMConfigSample.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C2E10CB154315DE00A6866C /* PFMConfigSample.h */; };
 		7C2E10CE1543162200A6866C /* PFMConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C2E10CD1543162200A6866C /* PFMConfig.h */; };
+		7C33C5C915433BF7008964EF /* SampleConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7C33C5C815433BF7008964EF /* SampleConfig.plist */; };
+		7C33C5CB15433C69008964EF /* Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7C33C5CA15433C69008964EF /* Config.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -51,7 +53,6 @@
 		7C2E10591541C8A800A6866C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7C2E105B1541C8A800A6866C /* PFMKit-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PFMKit-Prefix.pch"; sourceTree = "<group>"; };
 		7C2E105C1541C8A800A6866C /* PFMKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PFMKit.h; sourceTree = "<group>"; };
-		7C2E10651541C8A800A6866C /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		7C2E107D1541C91900A6866C /* PFMRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFMRequest.h; sourceTree = "<group>"; };
 		7C2E107E1541C91900A6866C /* PFMRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFMRequest.m; sourceTree = "<group>"; };
 		7C2E107F1541C91900A6866C /* PFMObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFMObject.h; sourceTree = "<group>"; };
@@ -69,6 +70,8 @@
 		7C2E10C81542073200A6866C /* PFMAPIRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFMAPIRequest.m; sourceTree = "<group>"; };
 		7C2E10CB154315DE00A6866C /* PFMConfigSample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFMConfigSample.h; sourceTree = "<group>"; };
 		7C2E10CD1543162200A6866C /* PFMConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFMConfig.h; sourceTree = "<group>"; };
+		7C33C5C815433BF7008964EF /* SampleConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SampleConfig.plist; sourceTree = "<group>"; };
+		7C33C5CA15433C69008964EF /* Config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Config.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,7 +118,6 @@
 			isa = PBXGroup;
 			children = (
 				7C2E104F1541C8A800A6866C /* Cocoa.framework */,
-				7C2E10651541C8A800A6866C /* SenTestingKit.framework */,
 				7C2E10B81541E41A00A6866C /* Foundation.framework */,
 				7C2E10511541C8A800A6866C /* Other Frameworks */,
 			);
@@ -148,6 +150,8 @@
 				7C2E10571541C8A800A6866C /* PFMKit-Info.plist */,
 				7C2E10581541C8A800A6866C /* InfoPlist.strings */,
 				7C2E105B1541C8A800A6866C /* PFMKit-Prefix.pch */,
+				7C33C5C815433BF7008964EF /* SampleConfig.plist */,
+				7C33C5CA15433C69008964EF /* Config.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -278,6 +282,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				7C2E105A1541C8A800A6866C /* InfoPlist.strings in Resources */,
+				7C33C5C915433BF7008964EF /* SampleConfig.plist in Resources */,
+				7C33C5CB15433C69008964EF /* Config.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -429,6 +435,7 @@
 				7C2E10781541C8A800A6866C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7C2E10C11541E41A00A6866C /* Build configuration list for PBXNativeTarget "PFMKitTest" */ = {
 			isa = XCConfigurationList;
@@ -437,6 +444,7 @@
 				7C2E10C31541E41A00A6866C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
