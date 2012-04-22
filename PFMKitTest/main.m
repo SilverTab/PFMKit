@@ -7,6 +7,11 @@
 //
 //  This is just a super simple test program for PFMKit...
 //  Test macros are form Mike Ash: https://github.com/mikeash/MACollectionUtilities/blob/master/main.m
+//  Some of tests directly related to Parse make some assumptions (i.e. that you
+//  setup the config properly, and that you have a User class with a user with
+//  "testuser" as its username and password.
+//  Sucks for now but eventually the tests will include creating/logging in and
+//  logging out and finally deleting the user...
 
 #import "main.h"
 #import <PFMKit/PFMKit.h>
