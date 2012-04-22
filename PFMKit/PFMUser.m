@@ -8,17 +8,19 @@
 
 #import "PFMUser.h"
 #import "PFMAPIRequest.h"
-#import "PFMConfig.h"
 
 @implementation PFMUser
 
 @synthesize sessionToken=_sessionToken, username=_username, password=_password;
+@synthesize isNew;
+
+
 
 + (void)logInWithUsernameInBackground:(NSString *)username password:(NSString *)password block:(PFMUserResultBlock)block;
 {
-    
-    PFMAPIRequest *loginRequest = [[PFMAPIRequest alloc] initWithApplicationId:PARSE_APPLICATION_ID
-                                                                        apiKey:PARSE_REST_API_KEY];
+    NSDictionary *settingDictionary = [NSDictionary dictionaryWithContentsOfFile:[[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"PFMKit.framework/Resources/Config.plist"]];
+    PFMAPIRequest *loginRequest = [[PFMAPIRequest alloc] initWithApplicationId:[settingDictionary objectForKey:@"ParseApplicationID"]
+                                                                        apiKey:[settingDictionary objectForKey:@"ParseRestAPIKey"]];
     NSDictionary *body = [NSDictionary dictionaryWithObjectsAndKeys:username, 
                           @"username",
                           password,
@@ -42,6 +44,13 @@
                              }
                          }];
     
+}
+
+
+
+- (BOOL)isDataAvailable
+{
+    return userDataAvailable;
 }
 
 

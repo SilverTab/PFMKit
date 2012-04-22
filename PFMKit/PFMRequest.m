@@ -16,6 +16,19 @@ NSString * PFMRequestErrorDomain = @"com.silvercocoa.PFMRequest.ErrorDomain";
 
 @synthesize url=_url, responseData=_responseData, headers=_headers, body=_body, method=_method;
 
++ (void)load
+{
+    @autoreleasepool {
+        // simple check to make sure the config is there
+        DLOG(@"%@", [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"PFMKit.framework/Resources/Config.plist"]);
+        if (![[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"PFMKit.framework/Resources/Config.plist"]) {
+            abort(); // Please rename the config file to "Config.plist" in the
+                     // Framework's resource!
+        }
+    }
+    
+}
+
 - (id)init
 {
     if (self = [super init]) {

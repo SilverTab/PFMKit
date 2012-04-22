@@ -28,6 +28,7 @@
 - (id)initWithClassName:(NSString *)newClassName;
 
 - (void)setValuesFromDictionary:(NSDictionary *)aDic;
+- (BOOL)isDataAvailable;
 
 
 @end

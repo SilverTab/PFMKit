@@ -8,12 +8,15 @@
 
 #import "PFMObject.h"
 
-@interface PFMUser : PFMObject
+@interface PFMUser : PFMObject {
+    BOOL userDataAvailable;
+}
 
 @property (nonatomic, strong) NSString *username;
 @property (nonatomic, strong) NSString *password;
 
 @property (nonatomic, strong) NSString *sessionToken;
+@property (nonatomic, readonly) BOOL isNew; 
 
 + (void)logInWithUsernameInBackground:(NSString *)username password:(NSString *)password block:(PFMUserResultBlock)block;
 

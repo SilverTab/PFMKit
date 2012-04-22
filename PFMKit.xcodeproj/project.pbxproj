@@ -24,8 +24,6 @@
 		7C2E10C61541E70700A6866C /* main.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C2E10C51541E70700A6866C /* main.h */; };
 		7C2E10C91542073200A6866C /* PFMAPIRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C2E10C71542073200A6866C /* PFMAPIRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7C2E10CA1542073200A6866C /* PFMAPIRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2E10C81542073200A6866C /* PFMAPIRequest.m */; };
-		7C2E10CC154315DE00A6866C /* PFMConfigSample.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C2E10CB154315DE00A6866C /* PFMConfigSample.h */; };
-		7C2E10CE1543162200A6866C /* PFMConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C2E10CD1543162200A6866C /* PFMConfig.h */; };
 		7C33C5C915433BF7008964EF /* SampleConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7C33C5C815433BF7008964EF /* SampleConfig.plist */; };
 		7C33C5CB15433C69008964EF /* Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7C33C5CA15433C69008964EF /* Config.plist */; };
 /* End PBXBuildFile section */
@@ -68,8 +66,6 @@
 		7C2E10C51541E70700A6866C /* main.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = main.h; sourceTree = "<group>"; };
 		7C2E10C71542073200A6866C /* PFMAPIRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFMAPIRequest.h; sourceTree = "<group>"; };
 		7C2E10C81542073200A6866C /* PFMAPIRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFMAPIRequest.m; sourceTree = "<group>"; };
-		7C2E10CB154315DE00A6866C /* PFMConfigSample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFMConfigSample.h; sourceTree = "<group>"; };
-		7C2E10CD1543162200A6866C /* PFMConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFMConfig.h; sourceTree = "<group>"; };
 		7C33C5C815433BF7008964EF /* SampleConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SampleConfig.plist; sourceTree = "<group>"; };
 		7C33C5CA15433C69008964EF /* Config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Config.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -168,8 +164,6 @@
 				7C2E10831541C91900A6866C /* PFMConstants.h */,
 				7C2E10C71542073200A6866C /* PFMAPIRequest.h */,
 				7C2E10C81542073200A6866C /* PFMAPIRequest.m */,
-				7C2E10CB154315DE00A6866C /* PFMConfigSample.h */,
-				7C2E10CD1543162200A6866C /* PFMConfig.h */,
 			);
 			name = "Parse API";
 			sourceTree = "<group>";
@@ -207,8 +201,6 @@
 				7C2E10881541C91900A6866C /* PFMUser.h in Headers */,
 				7C2E108A1541C91900A6866C /* PFMConstants.h in Headers */,
 				7C2E10C61541E70700A6866C /* main.h in Headers */,
-				7C2E10CC154315DE00A6866C /* PFMConfigSample.h in Headers */,
-				7C2E10CE1543162200A6866C /* PFMConfig.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
