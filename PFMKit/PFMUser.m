@@ -31,9 +31,13 @@
 + (PFMUser *)currentUser
 {
     NSDictionary *userAsDic = [[NSUserDefaults standardUserDefaults] dictionaryForKey:@"PFMCurrentUser"];
-    if (userAsDic) {
-        
-    }
+    if (!userAsDic)
+        return nil;
+    
+    
+    PFMUser *user = [PFMUser user];
+    [user setValuesFromDictionary:userAsDic];
+    return user;
 }
 
 + (void)logInWithUsernameInBackground:(NSString *)username password:(NSString *)password block:(PFMUserResultBlock)block;
@@ -73,6 +77,17 @@
     
 }
 
+- (void)setValuesFromDictionary:(NSDictionary *)aDic
+{
+    NSMutableDictionary *mutableDictionary = [aDic mutableCopy];
+    self.username = [aDic objectForKey:@"username"];
+    self.email = [aDic objectForKey:@"email"];
+    self.sessionToken = [aDic objectForKey:@"sessionToken"];
+    [mutableDictionary removeObjectForKey:@"username"];
+    [mutableDictionary removeObjectForKey:@"email"];
+    [mutableDictionary removeObjectForKey:@"sessionToken"];
+    [super setValuesFromDictionary:mutableDictionary];
+}
 
 - (BOOL)isDataAvailable
 {
