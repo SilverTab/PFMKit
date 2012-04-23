@@ -34,9 +34,9 @@
     if (!userAsDic)
         return nil;
     
-    
     PFMUser *user = [PFMUser user];
     [user setValuesFromDictionary:userAsDic];
+    user.authenticated = YES;
     return user;
 }
 
