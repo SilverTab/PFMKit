@@ -111,7 +111,7 @@
 
 - (NSDictionary *)serializeAsDictionary
 {
-    NSMutableDictionary *userAsDic = [[self serializeAsDictionary] mutableCopy];
+    NSMutableDictionary *userAsDic = [[super serializeAsDictionary] mutableCopy];
     // save the basic info...
     if (self.username)
         [userAsDic setObject:self.username forKey:@"username"];

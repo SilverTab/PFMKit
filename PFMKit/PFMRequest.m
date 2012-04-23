@@ -21,6 +21,7 @@ NSString * PFMRequestErrorDomain = @"com.silvercocoa.PFMRequest.ErrorDomain";
     if (self = [super init]) {
         self.method = @"GET";
         self.headers = [[NSMutableDictionary alloc] init];
+        self.body = [[NSMutableDictionary alloc] init];
     }
     return self;
 }
@@ -72,7 +73,7 @@ NSString * PFMRequestErrorDomain = @"com.silvercocoa.PFMRequest.ErrorDomain";
         request.HTTPBody = [[self urlEncodedStringForDictionary:self.body] dataUsingEncoding:NSUTF8StringEncoding];
     }
     
-    DLOG(@"Performing request on URL: %@", self.url);
+    DLOG(@"Performing the requet: %@", self);
     [NSURLConnection sendAsynchronousRequest:request 
                                        queue:queue 
                            completionHandler:^(NSURLResponse *response, NSData *respData, NSError *error) {

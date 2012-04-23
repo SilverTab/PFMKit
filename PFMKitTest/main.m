@@ -111,6 +111,8 @@ static void TestUserLoginValid(void)
                                          TEST_ASSERT(user != nil, @"User should not be nil");
                                          TEST_ASSERT(error == nil, @"There should be no error");
                                          TEST_ASSERT([[user objectId] length] > 0, @"User should have an id");
+                                         TEST_ASSERT([PFMUser currentUser] != nil, @"The current user should be set");
+
                                          done = YES;
                                      }];
     while (!done){}
