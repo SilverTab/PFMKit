@@ -15,6 +15,7 @@ NSString * PFMRequestErrorDomain = @"com.silvercocoa.PFMRequest.ErrorDomain";
 @implementation PFMRequest
 
 @synthesize url=_url, responseData=_responseData, headers=_headers, body=_body, method=_method;
+@synthesize jsonData=_jsonData;
 
 - (id)init
 {
@@ -54,7 +55,7 @@ NSString * PFMRequestErrorDomain = @"com.silvercocoa.PFMRequest.ErrorDomain";
     }
     
     // Deal with GET right away since it changes the URL...
-    if (self.body && self.method == @"GET") {
+    if (self.body && [self.method isEqualToString:@"GET"]) {
         // append it to the url...
         
         NSMutableString *currentURL = [[self.url absoluteString] mutableCopy];
@@ -63,15 +64,27 @@ NSString * PFMRequestErrorDomain = @"com.silvercocoa.PFMRequest.ErrorDomain";
     }
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:self.url];
-    if ([self.headers allKeys].count > 0)
-        [request setAllHTTPHeaderFields:self.headers];
+    
     
     request.HTTPMethod = self.method;
     
     // deal with POST body
-    if (self.body && self.method == @"POST") {
-        request.HTTPBody = [[self urlEncodedStringForDictionary:self.body] dataUsingEncoding:NSUTF8StringEncoding];
+    if ([self.method isEqualToString:@"POST"]) {
+        if (self.body) {
+            request.HTTPBody = [[self urlEncodedStringForDictionary:self.body] dataUsingEncoding:NSUTF8StringEncoding];
+            //[self.headers setObject:@"application/json" forKey:@"Content-Type"];
+        } 
+        if(self.jsonData) {
+            request.HTTPBody = self.jsonData;
+            [self.headers setObject:@"application/json" forKey:@"Content-Type"];
+        }
+        NSString *contentLength = [NSString stringWithFormat:@"%d", [request.HTTPBody length]];
+        [self.headers setObject:contentLength forKey:@"Content-Length"];
     }
+    
+    // set our headers
+    if ([self.headers allKeys].count > 0)
+        [request setAllHTTPHeaderFields:self.headers];
     
     DLOG(@"Performing the requet: %@", self);
     [NSURLConnection sendAsynchronousRequest:request 
@@ -85,6 +98,8 @@ NSString * PFMRequestErrorDomain = @"com.silvercocoa.PFMRequest.ErrorDomain";
                                    // ok no errors on the request, try to put into JSON
                                    self.responseData = respData;
                                    NSError *jsonError = nil;
+                                   
+                                   DLOG(@"Request reponse: %@", [[NSString alloc] initWithData:respData encoding:NSUTF8StringEncoding]);
                                    id jsonResult = [NSJSONSerialization JSONObjectWithData:self.responseData 
                                                                                    options:0 
                                                                                      error:&jsonError];
@@ -129,7 +144,8 @@ NSString * PFMRequestErrorDomain = @"com.silvercocoa.PFMRequest.ErrorDomain";
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"Request URL: %@\nHeaders: %@, Data: %@", self.url, self.headers, self.body];
+    NSString *jsonAsString = [[NSString alloc] initWithData:self.jsonData encoding:NSUTF8StringEncoding];
+    return [NSString stringWithFormat:@"Request URL: %@\nHeaders: %@\n, Data: %@\nJSONData: %@", self.url, self.headers, self.body, jsonAsString];
 }
 
 

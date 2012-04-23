@@ -69,10 +69,47 @@
     
 }
 
++ (void)logOut
+{
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"PFMCurrentUser"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
 
 - (void)signUpInBackgroundWithBlock:(PFMBooleanResultBlock)block
 {
+    if (!self.username || !self.password) {
+        NSDictionary *errorDictionary = [NSDictionary dictionaryWithObject:@"Username or Password not set." 
+                                                                    forKey:NSLocalizedDescriptionKey];
+        NSError *signupError = [NSError errorWithDomain:PFMRequestErrorDomain 
+                                                   code:ENOAUTH 
+                                               userInfo:errorDictionary];
+        block(NO, signupError);
+        return;
+    }
     
+    PFMAPIRequest *signupRequest = [[PFMAPIRequest alloc] init];
+    NSDictionary *signupDictionary = [NSDictionary dictionaryWithObjectsAndKeys:self.username, 
+                                      @"username",
+                                      self.password,
+                                      @"password",nil];
+    
+    NSError *jsonError = nil;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:signupDictionary 
+                                                       options:0 
+                                                         error:&jsonError];
+    
+    if (jsonError) {
+        block(NO, jsonError);
+    }
+    signupRequest.method = @"POST";
+    signupRequest.jsonData = jsonData;
+    [signupRequest performRequestWithPath:@"users" 
+                          completionBlock:^(id data, PFMRequest *request, NSError *error) {
+                              DLOG(@"Reply: %@", data);
+                              block(YES, nil);
+                          }];
+    //[signupRequest.body addEntriesFromDictionary:body];
 }
 
 - (void)setValuesFromDictionary:(NSDictionary *)aDic

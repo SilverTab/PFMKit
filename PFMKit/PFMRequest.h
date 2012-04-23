@@ -20,6 +20,7 @@ typedef void (^PFMRequestResultBlock)(id data, PFMRequest *request, NSError *err
 @property (nonatomic, strong) NSMutableDictionary *headers;
 @property (nonatomic, strong) NSMutableDictionary *body;
 @property (nonatomic, strong) NSString *method;
+@property (nonatomic, strong) NSData *jsonData;
 
 + (id)requestWithURL:(NSURL *)anURL;
 - (id)initWithURL:(NSURL *)anURL;

@@ -20,6 +20,8 @@
 
 + (PFMUser *)user;
 + (PFMUser *)currentUser;
++ (void)logOut;
+
 + (void)logInWithUsernameInBackground:(NSString *)username password:(NSString *)password block:(PFMUserResultBlock)block;
 - (void)signUpInBackgroundWithBlock:(PFMBooleanResultBlock)block;
 

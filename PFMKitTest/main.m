@@ -112,12 +112,30 @@ static void TestUserLoginValid(void)
                                          TEST_ASSERT(error == nil, @"There should be no error");
                                          TEST_ASSERT([[user objectId] length] > 0, @"User should have an id");
                                          TEST_ASSERT([PFMUser currentUser] != nil, @"The current user should be set");
-
+                                         
+                                         // log the user out
+                                         [PFMUser logOut];
+                                         TEST_ASSERT([PFMUser currentUser]==nil, @"Current user should be nil after logging out");
+                                         
                                          done = YES;
                                      }];
     while (!done){}
 }
 
+static void TestUser(void)
+{
+    __block BOOL done = NO;
+    
+    PFMUser *newUser = [PFMUser user];
+    newUser.username = @"signuptest";
+    newUser.password = @"signuptest";
+    [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        NSLog(@"Well, somehow I get here!");
+        done = YES;
+    }];
+    
+    while (!done){}
+}
 
 int main (int argc, const char * argv[])
 {
@@ -128,8 +146,8 @@ int main (int argc, const char * argv[])
         //TEST(TestRequestBadURL);
         //TEST(TestRequestNonJSON);
         //TEST(TestRequestValidRequest);
-        TEST(TestUserLoginValid);
-        
+        //TEST(TestUserLoginValid);
+        TEST(TestUser);
         NSString *message;
         if(gFailureCount)
             message = [NSString stringWithFormat: @"FAILED: %d total assertion failure%s", gFailureCount, gFailureCount > 1 ? "s" : ""];
