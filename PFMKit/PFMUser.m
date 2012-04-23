@@ -45,7 +45,7 @@
                           @"username",
                           password,
                           @"password",nil];
-    loginRequest.body = body;
+    [loginRequest.body addEntriesFromDictionary:body];
     [loginRequest performRequestWithPath:@"login" 
                          completionBlock:^(id data, PFMRequest *request, NSError *error) {
                              if (!error) {

@@ -18,7 +18,7 @@ typedef void (^PFMRequestResultBlock)(id data, PFMRequest *request, NSError *err
 @property (nonatomic, strong) NSURL *url;
 @property (nonatomic, strong) NSData *responseData;
 @property (nonatomic, strong) NSMutableDictionary *headers;
-@property (nonatomic, strong) NSDictionary *body;
+@property (nonatomic, strong) NSMutableDictionary *body;
 @property (nonatomic, strong) NSString *method;
 
 + (id)requestWithURL:(NSURL *)anURL;
