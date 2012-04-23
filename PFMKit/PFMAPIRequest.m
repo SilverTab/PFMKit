@@ -17,16 +17,30 @@ static NSURL* apiURL(void) {
 
 @implementation PFMAPIRequest
 
++ (void)load
+{
+    @autoreleasepool {
+        // simple check to make sure the config is there
+        DLOG(@"%@", [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"PFMKit.framework/Resources/Config.plist"]);
+        if (![[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"PFMKit.framework/Resources/Config.plist"]) {
+            abort(); // Please rename the config file to "Config.plist" in the
+            // Framework's resource!
+        }
+    }
+    
+}
 
-- (id)initWithApplicationId:(NSString *)anAppId apiKey:(NSString *)anApiKey
+
+- (id)init
 {
     if (self = [super init]) {
-        //self.url = apiURL();
-        [self.headers setObject:anAppId forKey:@"X-Parse-Application-Id"];
-        [self.headers setObject:anApiKey forKey:@"X-Parse-REST-API-Key"];
+        NSDictionary *settingDictionary = [NSDictionary dictionaryWithContentsOfFile:[[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"PFMKit.framework/Resources/Config.plist"]];
+        [self.headers setObject:[settingDictionary objectForKey:@"ParseApplicationID"] forKey:@"X-Parse-Application-Id"];
+        [self.headers setObject:[settingDictionary objectForKey:@"ParseRestAPIKey"] forKey:@"X-Parse-REST-API-Key"];
     }
     return self;
 }
+
 
 - (void)performRequestWithPath:(NSString *)path completionBlock:(PFMRequestResultBlock)block
 {

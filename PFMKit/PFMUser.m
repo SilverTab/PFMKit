@@ -42,9 +42,7 @@
 
 + (void)logInWithUsernameInBackground:(NSString *)username password:(NSString *)password block:(PFMUserResultBlock)block;
 {
-    NSDictionary *settingDictionary = [NSDictionary dictionaryWithContentsOfFile:[[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"PFMKit.framework/Resources/Config.plist"]];
-    PFMAPIRequest *loginRequest = [[PFMAPIRequest alloc] initWithApplicationId:[settingDictionary objectForKey:@"ParseApplicationID"]
-                                                                        apiKey:[settingDictionary objectForKey:@"ParseRestAPIKey"]];
+    PFMAPIRequest *loginRequest = [[PFMAPIRequest alloc] init];
     NSDictionary *body = [NSDictionary dictionaryWithObjectsAndKeys:username, 
                           @"username",
                           password,

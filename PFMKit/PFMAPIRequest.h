@@ -10,7 +10,6 @@
 
 @interface PFMAPIRequest : PFMRequest
 
-- (id)initWithApplicationId:(NSString *)anAppId apiKey:(NSString *)anApiKey;
 - (void)performRequestWithPath:(NSString *)path completionBlock:(PFMRequestResultBlock)block;
 
 @end
