@@ -8,6 +8,10 @@
 
 #import "PFMObject.h"
 
+@interface PFMObject ()
+// private methods...
+@end
+
 @implementation PFMObject
 
 @synthesize objectId=_objectId, className=_className, createdAt=_createdAt, updatedAt=_updatedAt;
@@ -44,6 +48,13 @@
     return self;
 }
 
+- (id)initWithDictionary:(NSDictionary *)aDictionary
+{
+    if (self = [self init]) {
+        [self setValuesFromDictionary:aDictionary];
+    }
+    return self;
+}
 
 - (void)setValuesFromDictionary:(NSDictionary *)aDic
 {
@@ -89,8 +100,25 @@
     return [NSString stringWithFormat:@"Class  Name: %@\n\
             Object ID: %@\n\
             Created At: %@\n\
-            Storage: %@", self.className, self.objectId, self.createdAt, self.storage];
+            Updated At: %@\n\
+            Storage: %@", self.className, self.objectId, self.createdAt, self.updatedAt, self.storage];
 }
 
+- (NSDictionary *)serializeAsDictionary
+{
+    NSMutableDictionary *objectDictionary = [[NSMutableDictionary alloc] init];
+    if (self.objectId)
+        [objectDictionary setObject:self.objectId forKey:@"objectId"];
+    if (self.className)
+        [objectDictionary setObject:self.className forKey:@"className"];
+    if (self.createdAt)
+        [objectDictionary setObject:self.createdAt forKey:@"createdAt"];
+    if (self.updatedAt)
+        [objectDictionary setObject:self.updatedAt forKey:@"updatedAt"];
+    if (self.storage)
+        [objectDictionary setObject:self.storage forKey:@"storage"];
+    
+    return objectDictionary;
+}
 
 @end

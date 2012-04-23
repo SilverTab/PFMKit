@@ -38,3 +38,4 @@ enum {
 // Blocks
 @class PFMUser;
 typedef void (^PFMUserResultBlock)(PFMUser *user, NSError *error);
+typedef void (^PFMBooleanResultBlock)(BOOL succeeded, NSError *error);

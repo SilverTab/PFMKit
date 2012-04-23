@@ -9,12 +9,32 @@
 #import "PFMUser.h"
 #import "PFMAPIRequest.h"
 
+@interface PFMUser()
+@property (nonatomic) BOOL authenticated;
+
+- (void)saveAsCurrentUser;
+@end
+
 @implementation PFMUser
 
 @synthesize sessionToken=_sessionToken, username=_username, password=_password;
-@synthesize isNew;
+@synthesize authenticated=_authenticated, email=_email;
 
 
++ (PFMUser *)user
+{
+    PFMUser *newUser = (PFMUser *)[PFMUser objectWithClassName:@"User"];
+    newUser.authenticated = NO;
+    return newUser;
+}
+
++ (PFMUser *)currentUser
+{
+    NSDictionary *userAsDic = [[NSUserDefaults standardUserDefaults] dictionaryForKey:@"PFMCurrentUser"];
+    if (userAsDic) {
+        
+    }
+}
 
 + (void)logInWithUsernameInBackground:(NSString *)username password:(NSString *)password block:(PFMUserResultBlock)block;
 {
@@ -37,7 +57,8 @@
                                  [mutableData removeObjectForKey:@"username"];
                                  [mutableData removeObjectForKey:@"sessionToken"];
                                  [aUser setValuesFromDictionary:mutableData];
-                                 
+                                 aUser.authenticated = YES;
+                                 [aUser saveAsCurrentUser];
                                  block(aUser, error);
                              } else {
                                  block(nil, error);
@@ -47,11 +68,45 @@
 }
 
 
+- (void)signUpInBackgroundWithBlock:(PFMBooleanResultBlock)block
+{
+    
+}
+
 
 - (BOOL)isDataAvailable
 {
     return userDataAvailable;
 }
 
+- (BOOL)isAuthenticated
+{
+    return self.authenticated;
+}
+
+#pragma mark - Private stuff...
+
+
+// Saves a user to disk as the "currentUser"
+- (void)saveAsCurrentUser
+{
+    NSDictionary *userAsDic = [self serializeAsDictionary];
+    
+    [[NSUserDefaults standardUserDefaults] setObject:userAsDic forKey:@"PFMCurrentUser"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (NSDictionary *)serializeAsDictionary
+{
+    NSMutableDictionary *userAsDic = [[self serializeAsDictionary] mutableCopy];
+    // save the basic info...
+    if (self.username)
+        [userAsDic setObject:self.username forKey:@"username"];
+    if (self.email)
+        [userAsDic setObject:self.email forKey:@"email"];
+    if (self.sessionToken)
+        [userAsDic setObject:self.sessionToken forKey:@"sessionToken"];
+    return userAsDic;
+}
 
 @end

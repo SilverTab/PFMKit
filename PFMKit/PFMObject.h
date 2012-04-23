@@ -21,6 +21,8 @@
 @property (strong, nonatomic) NSMutableDictionary *storage;
 
 
+#pragma mark - Methods from the iOS parse API
+
 + (PFMObject *)objectWithClassName:(NSString *)className;
 + (PFMObject *)objectWithoutDataWithClassName:(NSString *)className objectId:(NSString *)objectId;
 
@@ -30,5 +32,7 @@
 - (void)setValuesFromDictionary:(NSDictionary *)aDic;
 - (BOOL)isDataAvailable;
 
+#pragma mark - Methods not from the iOS parse API
+- (NSDictionary *)serializeAsDictionary;
 
 @end

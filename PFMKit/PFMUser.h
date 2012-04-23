@@ -14,11 +14,16 @@
 
 @property (nonatomic, strong) NSString *username;
 @property (nonatomic, strong) NSString *password;
+@property (nonatomic, strong) NSString *email;
 
 @property (nonatomic, strong) NSString *sessionToken;
-@property (nonatomic, readonly) BOOL isNew; 
 
++ (PFMUser *)user;
++ (PFMUser *)currentUser;
 + (void)logInWithUsernameInBackground:(NSString *)username password:(NSString *)password block:(PFMUserResultBlock)block;
+- (void)signUpInBackgroundWithBlock:(PFMBooleanResultBlock)block;
+
+- (BOOL)isAuthenticated;
 
 
 @end
